@@ -3,7 +3,7 @@
 ## Overview
 This project demonstrates the deployment of a full-stack web application on Microsoft Azure using a secure, scalable, and production-like architecture.
 
-The system is designed with proper network isolation, secure access, load balancing, and cloud database integration.
+The system is designed with network isolation, secure access, load balancing, and cloud database integration.
 
 ---
 
@@ -17,8 +17,8 @@ The system is designed with proper network isolation, secure access, load balanc
   - 1 Backend VM (Node.js + Express)
 
 - Application Gateway
-  - Acts as public entry point
-  - Handles HTTPS, routing, and load balancing
+  - Public entry point for users
+  - Handles HTTPS traffic, routing, and load balancing
 
 - Database
   - MongoDB Atlas (cloud-based, secured via IP whitelisting)
@@ -31,29 +31,29 @@ The system is designed with proper network isolation, secure access, load balanc
 - Created two VNets:
   - VNet1 → Frontend + Jump VM
   - VNet2 → Backend VM
-- Configured VNet Peering for private communication
+- Configured VNet Peering for secure private communication
 
 ---
 
 ### Virtual Machines
-- Jump VM (Public IP for SSH access)
+- Jump VM (Public IP for secure SSH access)
 - Frontend VMs (2)
   - Ubuntu + Apache2
   - React application deployed
   - Reverse proxy configured
 - Backend VM
   - Ubuntu + Node.js + Express
-  - Runs on private IP only
+  - Accessible only via private IP
 
 ---
 
 ### Application Gateway
-- Configured as public entry point
+- Configured as the public entry point
 - Enabled:
   - HTTPS routing
   - Load balancing across frontend VMs
   - Autoscaling
-- Connected with custom domain
+- Integrated with custom domain
 
 ---
 
@@ -67,17 +67,17 @@ The system is designed with proper network isolation, secure access, load balanc
 ## Security Implementation
 
 - Backend VM accessible only via private network
-- SSH access restricted via Jump VM
+- SSH access to internal VMs secured through a Jump VM
 - MongoDB Atlas secured using IP whitelisting
 - No direct public exposure of backend services
 
 ---
 
-## Networking & Routing
+## Networking and Routing
 
 - Frontend communicates with backend via private IP
-- Reverse proxy (Apache) forwards API requests
-- VNet Peering enables secure internal communication
+- Reverse proxy (Apache) forwards API requests securely
+- VNet Peering enables internal communication between networks
 
 ---
 
@@ -93,9 +93,9 @@ The system is designed with proper network isolation, secure access, load balanc
 
 ## Database Integration
 
-- Used MongoDB Atlas
+- Used MongoDB Atlas for cloud database
 - Created cluster and obtained connection string
-- Stored in .env file securely
+- Stored credentials securely using environment variables (.env)
 - Backend connects using MongoDB driver
 
 ---
@@ -103,21 +103,21 @@ The system is designed with proper network isolation, secure access, load balanc
 ## Deployment Process
 
 1. Created Resource Group (Test-rg)
-2. Setup VNets and Subnets
+2. Configured VNets and Subnets
 3. Deployed Virtual Machines
-4. Configured VNet Peering
-5. Created Application Gateway
-6. Deployed frontend and backend code
+4. Established VNet Peering
+5. Created and configured Application Gateway
+6. Deployed frontend and backend applications
 7. Configured Reverse Proxy
 8. Connected MongoDB Atlas
 9. Configured DNS and domain mapping
-10. Tested full application flow
+10. Tested complete application workflow
 
 ---
 
 ## Documentation
 
-Detailed step-by-step documentation with screenshots and diagrams is available here:
+Detailed step-by-step documentation with screenshots and architecture diagrams is available in:
 
 Full-Stack App Deployment-project.docx
 
@@ -138,6 +138,7 @@ Full-Stack App Deployment-project.docx
 ## Conclusion
 
 This project demonstrates a production-like cloud architecture with:
+
 - Secure communication
 - Scalable frontend
 - Isolated backend
