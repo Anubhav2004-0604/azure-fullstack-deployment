@@ -143,3 +143,6 @@ This project demonstrates a production-like cloud architecture with:
 - Isolated backend
 - Domain-based access
 - End-to-end deployment on Azure
+
+For detailed documentation, please download the project file:
+Full-Stack App Deployment-project.docx
